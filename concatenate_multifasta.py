@@ -7,14 +7,17 @@
 import os
 from Bio import SeqIO
 
-directory = "./pass"
-out = "multifastq_nema_ssci_ont"
+directory = "./"
+out = "testesin"
 
 output = open(f"{out}.fasta","w")
 
 files = os.listdir(f'{directory}')
 
 for i in files:
-    with open(f'{directory}'+i,"r") as set1:
-        for record in SeqIO.parse(set1, "fasta"):
-             SeqIO.write([record], output, "fasta")
+    try:
+        with open(f'{directory}'+i,"r") as set1:
+            for record in SeqIO.parse(set1, "fasta"):
+                 SeqIO.write([record], output, "fasta")
+    except IsADirectoryError:
+        continue
