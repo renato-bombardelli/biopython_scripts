@@ -15,6 +15,7 @@ output = open(f"{out}.fastq","w")
 files = os.listdir(f'{directory}')
 
 for i in files:
-	with open(f'{directory}'+i,"r") as set1:
-	    for record in SeqIO.parse(set1, "fastq"):
-	    	 SeqIO.write([record], output, "fastq")
+	if i != out+".fastq":
+		with open(f'{directory}'+i,"r") as set1:
+		    for record in SeqIO.parse(set1, "fastq"):
+			 SeqIO.write([record], output, "fastq")
