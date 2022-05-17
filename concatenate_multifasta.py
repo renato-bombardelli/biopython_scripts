@@ -15,9 +15,10 @@ output = open(f"{out}.fasta","w")
 files = os.listdir(f'{directory}')
 
 for i in files:
-    try:
-        with open(f'{directory}'+i,"r") as set1:
-            for record in SeqIO.parse(set1, "fasta"):
-                 SeqIO.write([record], output, "fasta")
-    except IsADirectoryError:
-        continue
+    if i != out+".fasta":
+        try:
+            with open(f'{directory}'+i,"r") as set1:
+                for record in SeqIO.parse(set1, "fasta"):
+                     SeqIO.write([record], output, "fasta")
+        except IsADirectoryError:
+            continue
